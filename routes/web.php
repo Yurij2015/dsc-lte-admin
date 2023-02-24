@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/home', static function() {
+Route::get('/home', static function () {
     return view('home');
 })->name('home')->middleware('auth');
 

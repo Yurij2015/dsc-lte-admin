@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use App\Models\Company;
 
 class CompanyController extends Controller
 {
-    public function index(): Application|Factory|View
+    public function index()
     {
-        return view('company.index');
+        $companies = Company::paginate(20);
+        $heads = ['Id', 'Name', 'Email', 'Phone', 'Address', 'City', 'Region', 'Country', 'Postal code'];
+        return view('company.index', ['companies' => $companies, 'heads' => $heads]);
     }
 }
