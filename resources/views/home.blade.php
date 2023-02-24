@@ -1,4 +1,5 @@
-@extends('adminlte::page', ['iFrameEnabled' => true])
+{{--@extends('adminlte::page', ['iFrameEnabled' => true])--}}
+@extends('adminlte::page')
 
 @section('title', 'AdminLTE')
 
@@ -12,6 +13,7 @@
             <div class="card">
                 <div class="card-body">
                     <p class="mb-0">You are logged in!</p>
+
                 </div>
             </div>
         </div>
