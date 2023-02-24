@@ -9,10 +9,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <x-adminlte-datatable id="table1" :heads="$heads">
+                    <x-adminlte-datatable id="table1" :heads="$heads" head-theme="light" theme="light" striped hoverable
+                                          bordered>
                         @foreach($companies->items() as $row)
                             <tr>
-                                <td>{!! $row['id'] !!}</td>
+                                <td>{!! $loop->iteration !!}</td>
                                 <td>{!! $row['name'] !!}</td>
                                 <td>{!! $row['email'] !!}</td>
                                 <td>{!! $row['phone'] !!}</td>
