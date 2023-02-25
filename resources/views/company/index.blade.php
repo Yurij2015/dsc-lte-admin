@@ -28,6 +28,7 @@
                                 <td>{!! $row->name !!}</td>
                                 <td>{!! $row->email!!}</td>
                                 <td>{!! $row->phone !!}</td>
+                                <td>{!! $row->country !!}</td>
                                 <td>{!! count($row->customers) ?: '-' !!}</td>
                                 <td>
                                     <nobr>

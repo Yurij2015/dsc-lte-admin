@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('companies', [CompanyController::class, 'index'])->name('companies.index');
     Route::get('company-show/{company}', [CompanyController::class, 'show'])->name('company.show');
     Route::get('company-update/{company}', [CompanyController::class, 'updateForm'])->name('company.update.form');
-    Route::put('company-update', [CompanyController::class, 'update'])->name('company.update');
+    Route::put('company-update/{company}', [CompanyController::class, 'update'])->name('company.update');
     Route::get('company-create', [CompanyController::class, 'createForm'])->name('company.create.form');
     Route::post('company-create', [CompanyController::class, 'store'])->name('company.create');
     Route::delete('company-destroy', [CompanyController::class, 'destroy'])->name('company.destroy');

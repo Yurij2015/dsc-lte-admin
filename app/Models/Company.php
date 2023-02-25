@@ -11,6 +11,10 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 'email', 'phone', 'address', 'city', 'region', 'country', 'postal_code'
+    ];
+
     public function customers(): BelongsToMany
     {
         return $this->belongsToMany(Customer::class);
