@@ -10,16 +10,62 @@
     $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
                   <i class="fa fa-lg fa-fw fa-trash"></i>
                   </button>';
-    $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
-                   <i class="fa fa-lg fa-fw fa-eye"></i>
-                   </button>';
 @endphp
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    @dump($customer)
+                    <table class="table table-hover">
+                        <tr>
+                            <th style="width: 30%">Full Name</th>
+                            <th style="width: 70%">{!! $customer->fullName !!}</th>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{!! $customer->email !!}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>{!! $customer->phone !!}</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td colspan="2">{!! $customer->address !!}</td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td colspan="2">{!! $customer->city !!}</td>
+                        </tr>
+                        <tr>
+                            <th>Region</th>
+                            <td colspan="2">{!! $customer->region !!}</td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td colspan="2">{!! $customer->country !!}</td>
+                        </tr>
+                        <tr>
+                            <th>Postal code</th>
+                            <td colspan="2">{!! $customer->postal_code !!}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="{{ route('customers.index') }}">
+                                    <button class="btn btn-xs btn-default text-danger mx-1 shadow"
+                                            title="Back to list of customers">
+                                        <i class="fa fa-lg fa-fw fa-arrow-circle-left"></i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <nobr>
+                                    <a href="{{ route('company.update.form', $customer->id) }}">{!! $btnEdit !!}</a>
+                                    <a href="{{ route('company.destroy', $customer->id) }}">{!! $btnDelete !!}</a>
+                                </nobr>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
