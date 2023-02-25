@@ -16,5 +16,7 @@ return [
     'important'                     => 'Important',
     'warning'                       => 'Warning',
     'information'                   => 'Information',
-    'companies'                     => 'Companies'
+    'companies'                     => 'Companies',
+    'menu'                          => 'MENU',
+    'customers'                     => 'Customers'
 ];

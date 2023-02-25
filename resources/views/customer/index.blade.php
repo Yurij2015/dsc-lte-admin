@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('title', 'AdminLTE')
 @section('content_header')
-    <h1 class="m-0 text-dark">Companies</h1>
+    <h1 class="m-0 text-dark">Customers</h1>
 @stop
 @php
     $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
@@ -21,24 +21,27 @@
                 <div class="card-body">
                     <x-adminlte-datatable id="table1" :heads="$heads" head-theme="light" theme="light" striped hoverable
                                           bordered>
-                        @foreach($companies->items() as $row)
+                        @foreach($customers->items() as $row)
                             <tr>
                                 <td>{!! $loop->iteration !!}</td>
-                                <td>{!! $row->name !!}</td>
-                                <td>{!! $row->email!!}</td>
-                                <td>{!! $row->phone !!}</td>
-                                <td>{!! $row->address !!}</td>
+                                <td>{!! $row->fullName !!}</td>
+                                <td>{!! $row->company->name !!}</td>
+                                <td>{!! $row['email'] !!}</td>
+                                <td>{!! $row['phone'] !!}</td>
+                                <td>{!! $row['address'] !!}</td>
+                                <td>{!! $row['city'] !!}</td>
+                                <td>{!! $row['country'] !!}</td>
                                 <td>
                                     <nobr>
-                                        <a href="{{ route('company.show', $row->id) }}">{!! $btnDetails !!}</a>
-                                        <a href="{{ route('company.update.form', $row->id) }}">{!! $btnEdit !!}</a>
-                                        <a href="{{ route('company.destroy', $row->id) }}">{!! $btnDelete !!}</a>
+                                        <a href="{{ route('customer.show', $row->id) }}">{!! $btnDetails !!}</a>
+                                        <a href="{{ route('customer.update.form', $row->id) }}">{!! $btnEdit !!}</a>
+                                        <a href="{{ route('customer.destroy', $row->id) }}">{!! $btnDelete !!}</a>
                                     </nobr>
                                 </td>
                             </tr>
                         @endforeach
                     </x-adminlte-datatable>
-                    {{ $companies->links('vendor.pagination.bootstrap-5') }}
+                    {{ $customers->links('vendor.pagination.bootstrap-5') }}
                 </div>
             </div>
         </div>
