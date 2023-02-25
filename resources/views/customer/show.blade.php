@@ -98,6 +98,9 @@
         </div>
     </div>
 @stop
+@section('css')
+    <link rel="stylesheet" href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.css') }}">
+@stop
 @section('js')
     <script src="{{ asset('vendor/datatables/js/jquery.dataTables.js') }}"></script>
 @stop

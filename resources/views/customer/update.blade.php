@@ -63,7 +63,9 @@
                                    icon="fas fa-lg fa-save"/>
                 <x-adminlte-button class="btn-flat" type="reset" label="Reset" theme="outline-danger"
                                    icon="fas fa-lg fa-trash"/>
-                <x-adminlte-button class="btn-flat" label="Back" theme="info" icon="fas fa-arrow-circle-left"/>
+                <a href="{{ route('customers.index') }}">
+                    <x-adminlte-button class="btn-flat" label="Back" theme="info" icon="fas fa-arrow-circle-left"/>
+                </a>
             </div>
         </form>
 @endsection

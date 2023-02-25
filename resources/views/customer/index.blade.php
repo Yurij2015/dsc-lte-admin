@@ -13,6 +13,9 @@
     $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
                    <i class="fa fa-lg fa-fw fa-eye"></i>
                    </button>';
+    $config['paging'] = false;
+    $config['searching'] = false;
+    $config['info'] = false;
 @endphp
 @section('content')
     <div class="row">
@@ -21,7 +24,7 @@
                 <div class="card-body">
                     <a href="{{ route('customer.create.form') }}" class="btn btn-primary float-right mb-3">Add customer</a>
                     <x-adminlte-datatable id="table1" :heads="$heads" head-theme="light" theme="light" striped hoverable
-                                          bordered>
+                                          bordered :config="$config">
                         @foreach($customers->items() as $row)
                             <tr>
                                 <td>{!! $loop->iteration !!}</td>
