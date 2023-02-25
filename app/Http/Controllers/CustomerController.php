@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContactForm;
+use App\Http\Requests\CustomerSaveRequest;
 use App\Models\Customer;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -29,22 +26,20 @@ class CustomerController extends Controller
         return view('customer.create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function updateForm(Customer $customer)
     {
-        $this->validate($request, [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'address' => 'required',
-            'city' => 'required',
-            'region' => 'required',
-            'country' => 'required',
-            'postal_code' => 'required'
-        ]);
-        Customer::create($request->all());
+        return view('customer.update', ['customer' => $customer]);
+    }
+
+    public function store(CustomerSaveRequest $storeRequest): RedirectResponse
+    {
+        Customer::create($storeRequest->all());
         return redirect()->route('customers.index');
     }
 
-
+    public function update(Customer $customer, CustomerSaveRequest $saveRequest): RedirectResponse
+    {
+        $customer->update($saveRequest->all());
+        return redirect()->route('customers.index');
+    }
 }

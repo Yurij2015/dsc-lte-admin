@@ -100,4 +100,6 @@
         </div>
     </div>
 @stop
-
+@section('js')
+    <script src="{{ asset('vendor/datatables/js/jquery.dataTables.js') }}"></script>
+@stop
