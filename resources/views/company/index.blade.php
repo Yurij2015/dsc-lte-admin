@@ -27,7 +27,7 @@
                                 <td>{!! $row->name !!}</td>
                                 <td>{!! $row->email!!}</td>
                                 <td>{!! $row->phone !!}</td>
-                                <td>{!! $row->address !!}</td>
+                                <td>{!! count($row->customers) ?: '-' !!}</td>
                                 <td>
                                     <nobr>
                                         <a href="{{ route('company.show', $row->id) }}">{!! $btnDetails !!}</a>

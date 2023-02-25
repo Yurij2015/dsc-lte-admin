@@ -25,12 +25,11 @@
                             <tr>
                                 <td>{!! $loop->iteration !!}</td>
                                 <td>{!! $row->fullName !!}</td>
-                                <td>{!! $row->company->name !!}</td>
                                 <td>{!! $row['email'] !!}</td>
                                 <td>{!! $row['phone'] !!}</td>
-                                <td>{!! $row['address'] !!}</td>
                                 <td>{!! $row['city'] !!}</td>
                                 <td>{!! $row['country'] !!}</td>
+                                <td>{!! count($row->companies) ?: '-' !!}</td>
                                 <td>
                                     <nobr>
                                         <a href="{{ route('customer.show', $row->id) }}">{!! $btnDetails !!}</a>

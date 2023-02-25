@@ -8,8 +8,8 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers = Customer::paginate(20);
-        $heads = ['#', 'Full Name', 'Company', 'Email', 'Phone', 'Address', 'City', 'Country', 'Action'];
+        $customers = Customer::with('companies')->paginate(20);
+        $heads = ['#', 'Full Name','Email', 'Phone', 'City', 'Country', 'Number of companies', 'Action'];
         return view('customer.index', ['customers' => $customers, 'heads' => $heads]);
     }
 

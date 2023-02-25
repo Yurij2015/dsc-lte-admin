@@ -8,8 +8,8 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        $companies = Company::paginate(20);
-        $heads = ['#', 'Name', 'Email', 'Phone', 'Address', 'Action'];
+        $companies = Company::with('customers')->paginate(20);
+        $heads = ['#', 'Name', 'Email', 'Phone', 'Number of customers', 'Action'];
         return view('company.index', ['companies' => $companies, 'heads' => $heads]);
     }
 

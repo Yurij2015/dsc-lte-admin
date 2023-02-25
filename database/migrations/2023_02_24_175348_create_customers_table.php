@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('customers', static function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('first_name', 25);
             $table->string('last_name', 25);
             $table->string('email', 50)->nullable();

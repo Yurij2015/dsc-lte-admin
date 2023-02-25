@@ -60,14 +60,41 @@
                             </td>
                             <td>
                                 <nobr>
-                                    <a href="{{ route('company.update.form', $customer->id) }}">{!! $btnEdit !!}</a>
-                                    <a href="{{ route('company.destroy', $customer->id) }}">{!! $btnDelete !!}</a>
+                                    <a href="{{ route('customer.update.form', $customer->id) }}">{!! $btnEdit !!}</a>
+                                    <a href="{{ route('customer.destroy', $customer->id) }}">{!! $btnDelete !!}</a>
                                 </nobr>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
+            @if(count($customer->companies))
+                <h3 class="mb-1 text-dark">Companies of customer - {{ $customer->fullName }}</h3>
+                <div class="card">
+                    <div class="card-body">
+                        @php
+                            $heads = ['#', 'Name', 'Email', 'Phone', 'Address'];
+                        @endphp
+                        <x-adminlte-datatable id="table1"
+                                              :heads="$heads"
+                                              head-theme="light"
+                                              theme="light"
+                                              striped
+                                              hoverable
+                                              bordered>
+                            @foreach($customer->companies as $row)
+                                <tr>
+                                    <td>{!! $loop->iteration !!}</td>
+                                    <td>{!! $row->name !!}</td>
+                                    <td>{!! $row->email!!}</td>
+                                    <td>{!! $row->phone !!}</td>
+                                    <td>{!! $row->address !!}</td>
+                                </tr>
+                            @endforeach
+                        </x-adminlte-datatable>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @stop
