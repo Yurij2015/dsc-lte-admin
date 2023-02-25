@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('company-show/{company}', [CompanyController::class, 'show'])->name('company.show');
     Route::get('company-update', [CompanyController::class, 'update'])->name('company.update.form');
     Route::put('company-update', [CompanyController::class, 'update'])->name('company.update');
-    Route::get('company-create', [CompanyController::class, 'store'])->name('company.create.form');
+    Route::get('company-create', [CompanyController::class, 'createForm'])->name('company.create.form');
     Route::post('company-create', [CompanyController::class, 'store'])->name('company.create');
     Route::delete('company-destroy', [CompanyController::class, 'destroy'])->name('company.destroy');
 
@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('customer-show/{customer}', [CustomerController::class, 'show'])->name('customer.show');
     Route::get('customer-update', [CustomerController::class, 'update'])->name('customer.update.form');
     Route::put('customer-update', [CustomerController::class, 'update'])->name('customer.update');
-    Route::get('customer-create', [CustomerController::class, 'store'])->name('customer.create.form');
+    Route::get('customer-create', [CustomerController::class, 'createForm'])->name('customer.create.form');
     Route::post('customer-create', [CustomerController::class, 'store'])->name('customer.create');
     Route::delete('customer-destroy', [CustomerController::class, 'destroy'])->name('customer.destroy');
 });

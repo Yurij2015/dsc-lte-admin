@@ -10,7 +10,10 @@ class Customer extends Model
 {
     use HasFactory;
 
-    public string $full_name;
+//    public string $full_name;
+    protected $fillable = [
+        'first_name', 'last_name', 'email', 'phone', 'address', 'city', 'region', 'country', 'postal_code'
+    ];
 
     public function companies(): BelongsToMany
     {

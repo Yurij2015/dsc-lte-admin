@@ -19,6 +19,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <a href="{{ route('customer.create.form') }}" class="btn btn-primary float-right mb-3">Add customer</a>
                     <x-adminlte-datatable id="table1" :heads="$heads" head-theme="light" theme="light" striped hoverable
                                           bordered>
                         @foreach($customers->items() as $row)

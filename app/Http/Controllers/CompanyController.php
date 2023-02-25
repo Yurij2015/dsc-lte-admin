@@ -8,7 +8,7 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        $companies = Company::with('customers')->paginate(20);
+        $companies = Company::with('customers')->orderBy('id', 'desc')->paginate(20);
         $heads = ['#', 'Name', 'Email', 'Phone', 'Number of customers', 'Action'];
         return view('company.index', ['companies' => $companies, 'heads' => $heads]);
     }
@@ -17,4 +17,10 @@ class CompanyController extends Controller
     {
         return view('company.show', ['company' => $company]);
     }
+
+    public function createForm()
+    {
+        return view('company.create');
+    }
+
 }
