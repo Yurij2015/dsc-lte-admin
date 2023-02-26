@@ -24,10 +24,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <x-adminlte-button label="Add customer (modal)" data-toggle="modal" data-target="#modal-ad-customer"
-                                       class="bg-teal float-right ml-3"/>
-                    <a href="{{ route('customer.create.form') }}" class="btn bg-primary float-right mb-3">
-                        Add customer</a>
+                    <x-adminlte-button label="Add customer" data-toggle="modal" data-target="#modal-ad-customer"
+                                       class="bg-primary float-right mb-3"/>
+                    {{--                    <a href="{{ route('customer.create.form') }}" class="btn bg-primary float-right mb-3">--}}
+                    {{--                        Add customer</a>--}}
                     <x-adminlte-datatable id="table1" :heads="$heads" head-theme="light" theme="light" striped hoverable
                                           bordered :config="$config">
                         @foreach($customers->items() as $row)
@@ -54,9 +54,10 @@
             </div>
         </div>
     </div>
-    <x-adminlte-modal id="modal-ad-customer" title="Create customer" size="lg" theme="teal"
+    <x-adminlte-modal id="modal-ad-customer" title="Create customer" size="lg" theme="info"
                       icon="fas fa-user" v-centered static-backdrop scrollable>
-        <form action="{{ route('customer.create') }}" method="POST" enctype="multipart/form-data" id="add-customer-form">
+        <form action="{{ route('customer.create') }}" method="post" enctype="multipart/form-data"
+              id="add-customer-form">
             <!-- Modal body -->
             <div class="modal-body">
                 @csrf
@@ -105,20 +106,16 @@
                         <x-slot name="bottomSlot">
                         </x-slot>
                     </x-adminlte-input>
+                    <x-adminlte-button class="mr-auto" type="submit" theme="success" label="Save"/>
                 </div>
             </div>
-                                    <button type="submit" class="btn btn-primary">Save</button>
-
             <x-slot name="footerSlot">
-                <x-adminlte-button class="mr-auto" type="submit" theme="success" label="Save"/>
                 <x-adminlte-button theme="danger" label="Close" data-dismiss="modal"/>
             </x-slot>
         </form>
     </x-adminlte-modal>
 @stop
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('vendor/datatables/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/customer.js') }}" defer></script>

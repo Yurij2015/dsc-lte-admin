@@ -35,11 +35,10 @@ $(document).ready(function () {
                 row += '</tr>';
                 $(table).find('tbody').prepend(row);
                 $(form).trigger("reset");
-                $(modal).modal('hide');
+                $(modal+" .close").click()
             },
             error: function (response) {
             }
         });
     });
-
 });
