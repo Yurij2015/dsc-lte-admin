@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('company-destroy', [CompanyController::class, 'destroy'])->name('company.destroy');
 
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::post('customers', [CustomerController::class, 'index'])->name('customers.index');
+
     Route::get('customer-show/{customer}', [CustomerController::class, 'show'])->name('customer.show');
     Route::get('customer-update/{customer}', [CustomerController::class, 'updateForm'])->name('customer.update.form');
     Route::put('customer-update/{customer}', [CustomerController::class, 'update'])->name('customer.update');

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerSaveRequest;
 use App\Models\Customer;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Response;
+
 
 class CustomerController extends Controller
 {
@@ -30,12 +33,16 @@ class CustomerController extends Controller
     {
         return view('customer.update', ['customer' => $customer]);
     }
-
-    public function store(CustomerSaveRequest $storeRequest): RedirectResponse
+    public function store(CustomerSaveRequest $storeRequest): JsonResponse
     {
-        Customer::create($storeRequest->all());
-        return redirect()->route('customers.index');
+        $customer = Customer::create($storeRequest->all());
+        return Response::json($customer);
     }
+//    public function store(CustomerSaveRequest $storeRequest): RedirectResponse
+//    {
+//        Customer::create($storeRequest->all());
+//        return redirect()->route('customers.index');
+//    }
 
     public function update(Customer $customer, CustomerSaveRequest $saveRequest): RedirectResponse
     {
