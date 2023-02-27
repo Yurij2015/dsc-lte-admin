@@ -25,13 +25,11 @@
             <div class="card">
                 <div class="card-body">
                     <x-adminlte-button label="Add customer" data-toggle="modal" data-target="#modal-ad-customer"
-                                       class="bg-primary float-right mb-3"/>
-                    {{--                    <a href="{{ route('customer.create.form') }}" class="btn bg-primary float-right mb-3">--}}
-                    {{--                        Add customer</a>--}}
+                                       class="bg-primary float-right mb-3" id="add-customer"/>
                     <x-adminlte-datatable id="table1" :heads="$heads" head-theme="light" theme="light" striped hoverable
                                           bordered :config="$config">
                         @foreach($customers->items() as $row)
-                            <tr>
+                            <tr id="customer_{{  $row->id }}">
                                 <td>{!! $loop->iteration !!}</td>
                                 <td>{!! $row->fullName !!}</td>
                                 <td>{!! $row['email'] !!}</td>
@@ -52,33 +50,6 @@
                     </x-adminlte-datatable>
                     {{ $customers->links('vendor.pagination.bootstrap-5') }}
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- modal -->
-    <div class="modal fade" id="postModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content ">
-                <form method="post" id="postForm">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitle"> AJAX CRUD Application</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" name="title" class="form-control" id="title" placeholder="Post Title">
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Body</label>
-                            <textarea class="form-control" name="description" placeholder="Description" id="description" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
