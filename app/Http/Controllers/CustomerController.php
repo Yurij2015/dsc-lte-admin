@@ -24,6 +24,17 @@ class CustomerController extends Controller
         return view('customer.show', ['customer' => $customer]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param Customer $customer
+     * @return JsonResponse
+     */
+    public function showInModal(Customer $customer): JsonResponse
+    {
+        return response()->json(['status' => 'success', 'data' => $customer]);
+    }
+
     public function createForm()
     {
         return view('customer.create');
@@ -33,20 +44,28 @@ class CustomerController extends Controller
     {
         return view('customer.update', ['customer' => $customer]);
     }
-    public function store(CustomerSaveRequest $storeRequest): JsonResponse
-    {
-        $customer = Customer::create($storeRequest->all());
-        return Response::json($customer);
-    }
-//    public function store(CustomerSaveRequest $storeRequest): RedirectResponse
-//    {
-//        Customer::create($storeRequest->all());
-//        return redirect()->route('customers.index');
-//    }
 
-    public function update(Customer $customer, CustomerSaveRequest $saveRequest): RedirectResponse
+    public function store(Customer $customer, CustomerSaveRequest $storeRequest): JsonResponse
     {
-        $customer->update($saveRequest->all());
-        return redirect()->route('customers.index');
+        $customer = Customer::updateOrCreate(
+            [
+                'id' => $customer->id
+            ],
+            [
+                'first_name' => $storeRequest->first_name,
+                'last_name' => $storeRequest->last_name,
+                'email' => $storeRequest->email,
+                'phone' => $storeRequest->phone,
+                'address' => $storeRequest->address,
+                'city' => $storeRequest->city,
+                'region' => $storeRequest->region,
+                'country' => $storeRequest->country,
+                'postal_code' => $storeRequest->postal_code
+            ]
+        );
+        if ($customer) {
+            return response()->json(['status' => 'success', 'data' => $customer]);
+        }
+        return response()->json(['status' => 'failed', 'message' => 'Failed! Customer not saved']);
     }
 }

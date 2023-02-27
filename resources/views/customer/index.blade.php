@@ -25,13 +25,11 @@
             <div class="card">
                 <div class="card-body">
                     <x-adminlte-button label="Add customer" data-toggle="modal" data-target="#modal-ad-customer"
-                                       class="bg-primary float-right mb-3"/>
-                    {{--                    <a href="{{ route('customer.create.form') }}" class="btn bg-primary float-right mb-3">--}}
-                    {{--                        Add customer</a>--}}
+                                       class="bg-primary float-right mb-3" id="add-customer"/>
                     <x-adminlte-datatable id="table1" :heads="$heads" head-theme="light" theme="light" striped hoverable
                                           bordered :config="$config">
                         @foreach($customers->items() as $row)
-                            <tr>
+                            <tr id="customer_{{  $row->id }}">
                                 <td>{!! $loop->iteration !!}</td>
                                 <td>{!! $row->fullName !!}</td>
                                 <td>{!! $row['email'] !!}</td>
@@ -42,7 +40,8 @@
                                 <td>
                                     <nobr>
                                         <a href="{{ route('customer.show', $row->id) }}">{!! $btnDetails !!}</a>
-                                        <a href="{{ route('customer.update.form', $row->id) }}">{!! $btnEdit !!}</a>
+                                        <a href="javascript:void(0)" data-id="{{$row->id}}"
+                                           title="Edit" class="btn-edit">{!! $btnEdit !!}</a>
                                         <a href="{{ route('customer.destroy', $row->id) }}">{!! $btnDelete !!}</a>
                                     </nobr>
                                 </td>
@@ -54,6 +53,7 @@
             </div>
         </div>
     </div>
+
     <x-adminlte-modal id="modal-ad-customer" title="Create customer" size="lg" theme="info"
                       icon="fas fa-user" v-centered static-backdrop scrollable>
         <form action="{{ route('customer.create') }}" method="post" enctype="multipart/form-data"
@@ -110,7 +110,7 @@
                 </div>
             </div>
             <x-slot name="footerSlot">
-                <x-adminlte-button theme="danger" label="Close" data-dismiss="modal"/>
+                <x-adminlte-button theme="danger" class="btn-close" label="Close" data-dismiss="modal" data-bs-dismiss="modal"/>
             </x-slot>
         </form>
     </x-adminlte-modal>
