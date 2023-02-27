@@ -48,6 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::post('customer-update/{customer}', [CustomerController::class, 'store'])->name('customer.update');
     Route::get('customer-create', [CustomerController::class, 'createForm'])->name('customer.create.form');
     Route::post('customer-create', [CustomerController::class, 'store'])->name('customer.create');
-    Route::delete('customer-destroy', [CustomerController::class, 'destroy'])->name('customer.destroy');
+    Route::delete('customer-destroy/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy');
 });
 
