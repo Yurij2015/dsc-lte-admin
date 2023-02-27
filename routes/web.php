@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('customers', [CustomerController::class, 'index'])->name('customers.index');
 
     Route::get('customer-show/{customer}', [CustomerController::class, 'show'])->name('customer.show');
+    Route::get('customer-modal-show/{customer}', [CustomerController::class, 'showInModal'])->name('customer.show-in-modal');
     Route::get('customer-update/{customer}', [CustomerController::class, 'updateForm'])->name('customer.update.form');
     Route::put('customer-update/{customer}', [CustomerController::class, 'update'])->name('customer.update');
     Route::get('customer-create', [CustomerController::class, 'createForm'])->name('customer.create.form');

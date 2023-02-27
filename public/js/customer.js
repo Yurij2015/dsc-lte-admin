@@ -41,4 +41,28 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#modal-ad-customer').click(function() {
+        $('#modal-ad-customer .modal-title').html('<i class="fas fa-user mr-2"></i> Create customer');
+    });
+
+    $('.btn-edit').click(function() {
+        const id = $(this).data('id');
+        $('.close').attr('data-bs-dismiss','modal');
+
+        $.ajax({
+            url: `customer-modal-show/${id}`,
+            type: 'GET',
+            success: function(response) {
+                if (response && response.status === 'success') {
+                    const data = response.data;
+                    $('#modal-ad-customer .modal-title').html('<i class="fas fa-user mr-2"></i> Update customer');
+                    $('#modal-ad-customer input[name=first_name]').val(data.first_name);
+                    $('#modal-ad-customer input[name=last_name]').val(data.last_name);
+                    $('#modal-ad-customer').modal('toggle');
+                }
+            }
+        })
+    });
+
 });

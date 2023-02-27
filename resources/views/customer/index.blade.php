@@ -42,7 +42,8 @@
                                 <td>
                                     <nobr>
                                         <a href="{{ route('customer.show', $row->id) }}">{!! $btnDetails !!}</a>
-                                        <a href="{{ route('customer.update.form', $row->id) }}">{!! $btnEdit !!}</a>
+                                        <a href="javascript:void(0)" data-id="{{$row->id}}"
+                                           title="Edit" class="btn-edit">{!! $btnEdit !!}</a>
                                         <a href="{{ route('customer.destroy', $row->id) }}">{!! $btnDelete !!}</a>
                                     </nobr>
                                 </td>
@@ -54,6 +55,34 @@
             </div>
         </div>
     </div>
+    <!-- modal -->
+    <div class="modal fade" id="postModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ">
+                <form method="post" id="postForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle"> AJAX CRUD Application</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" name="title" class="form-control" id="title" placeholder="Post Title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Body</label>
+                            <textarea class="form-control" name="description" placeholder="Description" id="description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <x-adminlte-modal id="modal-ad-customer" title="Create customer" size="lg" theme="info"
                       icon="fas fa-user" v-centered static-backdrop scrollable>
         <form action="{{ route('customer.create') }}" method="post" enctype="multipart/form-data"
@@ -110,7 +139,7 @@
                 </div>
             </div>
             <x-slot name="footerSlot">
-                <x-adminlte-button theme="danger" label="Close" data-dismiss="modal"/>
+                <x-adminlte-button theme="danger" class="btn-close" label="Close" data-dismiss="modal" data-bs-dismiss="modal"/>
             </x-slot>
         </form>
     </x-adminlte-modal>

@@ -24,6 +24,17 @@ class CustomerController extends Controller
         return view('customer.show', ['customer' => $customer]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param Customer $customer
+     * @return JsonResponse
+     */
+    public function showInModal(Customer $customer): JsonResponse
+    {
+        return response()->json(['status' => 'success', 'data' => $customer]);
+    }
+
     public function createForm()
     {
         return view('customer.create');
@@ -33,6 +44,7 @@ class CustomerController extends Controller
     {
         return view('customer.update', ['customer' => $customer]);
     }
+
     public function store(CustomerSaveRequest $storeRequest): JsonResponse
     {
         $customer = Customer::create($storeRequest->all());
