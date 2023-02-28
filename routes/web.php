@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::put('company-update/{company}', [CompanyController::class, 'update'])->name('company.update');
     Route::get('company-create', [CompanyController::class, 'createForm'])->name('company.create.form');
     Route::post('company-create', [CompanyController::class, 'store'])->name('company.create');
-    Route::delete('company-destroy', [CompanyController::class, 'destroy'])->name('company.destroy');
+    Route::delete('company-destroy/{company}', [CompanyController::class, 'destroy'])->name('company.destroy');
 
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
     Route::post('customers', [CustomerController::class, 'index'])->name('customers.index');
@@ -48,6 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::post('customer-update/{customer}', [CustomerController::class, 'store'])->name('customer.update');
     Route::get('customer-create', [CustomerController::class, 'createForm'])->name('customer.create.form');
     Route::post('customer-create', [CustomerController::class, 'store'])->name('customer.create');
-    Route::delete('customer-destroy', [CustomerController::class, 'destroy'])->name('customer.destroy');
+    Route::delete('customer-destroy/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy');
 });
 

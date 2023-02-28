@@ -42,7 +42,9 @@
                                         <a href="{{ route('customer.show', $row->id) }}">{!! $btnDetails !!}</a>
                                         <a href="javascript:void(0)" data-id="{{$row->id}}"
                                            title="Edit" class="btn-edit">{!! $btnEdit !!}</a>
-                                        <a href="{{ route('customer.destroy', $row->id) }}">{!! $btnDelete !!}</a>
+                                        <a href="javascript:void(0)" data-id="{{$row->id}}"
+                                           title="Edit" class="btn-delete">{!! $btnDelete !!}</a>
+{{--                                        <a href="{{ route('customer.destroy', $row->id) }}" class="btn-delete">{!! $btnDelete !!}</a>--}}
                                     </nobr>
                                 </td>
                             </tr>
@@ -60,7 +62,6 @@
               id="add-customer-form">
             <!-- Modal body -->
             <div class="modal-body">
-                @csrf
                 <div class="card-body">
                     <x-adminlte-input name="first_name" label="First name" value="{{ old('first_name') }}"
                                       placeholder="First name">

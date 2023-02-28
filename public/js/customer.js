@@ -1,3 +1,8 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 $(document).ready(function () {
     let table = '#table1';
     let modal = '#modal-ad-customer';
@@ -90,5 +95,26 @@ $(document).ready(function () {
                 }
             }
         })
+    });
+
+    $('.btn-delete').click(function () {
+        const id = $(this).data('id');
+        if (id) {
+            const result = window.confirm('Do you want to delete?');
+            if (result) {
+                $.ajax({
+                    url: `customer-destroy/${id}`,
+                    type: 'DELETE',
+                    success: function (response) {
+                        if (response && response.status === 'success') {
+                            const data = response.data;
+                            $(`#customer_${data.id}`).remove();
+                        }
+                    }
+                });
+            } else {
+                console.log('error', 'Customer not found');
+            }
+        }
     });
 });

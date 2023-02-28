@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomerSaveRequest;
 use App\Models\Customer;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Response;
-
 
 class CustomerController extends Controller
 {
@@ -67,5 +63,17 @@ class CustomerController extends Controller
             return response()->json(['status' => 'success', 'data' => $customer]);
         }
         return response()->json(['status' => 'failed', 'message' => 'Failed! Customer not saved']);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Customer $customer
+     * @return JsonResponse
+     */
+    public function destroy(Customer $customer): JsonResponse
+    {
+        $customer->delete();
+        return response()->json(['status' => 'success', 'data' => $customer]);
     }
 }
