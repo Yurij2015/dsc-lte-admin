@@ -22,7 +22,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('company.create.form') }}" class="btn btn-primary float-right mb-3">Add company</a>
+                    <a href="{{ route('company.create.form') }}" class="btn btn-primary float-right mb-3">Add
+                        company</a>
                     <x-adminlte-datatable id="table1" :heads="$heads" head-theme="light" theme="light" striped hoverable
                                           bordered :config="$config">
                         @foreach($companies->items() as $row)
@@ -37,7 +38,13 @@
                                     <nobr>
                                         <a href="{{ route('company.show', $row->id) }}">{!! $btnDetails !!}</a>
                                         <a href="{{ route('company.update.form', $row->id) }}">{!! $btnEdit !!}</a>
-                                        <a href="{{ route('company.destroy', $row->id) }}">{!! $btnDelete !!}</a>
+                                        <form method="POST" action="{{ route('company.destroy', $row->id) }}"
+                                              style="display:inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            {!! $btnDelete !!}<i/>
+                                        </form>
+
                                     </nobr>
                                 </td>
                             </tr>

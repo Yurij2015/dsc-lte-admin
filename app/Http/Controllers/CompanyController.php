@@ -41,4 +41,10 @@ class CompanyController extends Controller
         $company->update($saveRequest->all());
         return redirect()->route('companies.index');
     }
+
+    public function destroy(Company $company): RedirectResponse
+    {
+        $company->delete();
+        return redirect()->route('companies.index');
+    }
 }
