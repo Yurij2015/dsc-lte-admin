@@ -66,7 +66,8 @@ $(document).ready(function () {
     $('#add-customer').click(function () {
         $('#modal-ad-customer .modal-title').html('<i class="fas fa-user mr-2"></i> Create customer');
         $(form).trigger("reset");
-        $("#add-customer-form").removeAttr('data-id');
+        $(form).removeAttr('data-id');
+        $(form).attr('action', 'customer-create');
     });
 
     $('.btn-edit').click(function () {
