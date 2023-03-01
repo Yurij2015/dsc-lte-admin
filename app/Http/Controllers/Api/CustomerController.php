@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\CustomerResource;
 use App\Models\Customer;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CustomerController extends Controller
@@ -21,8 +22,8 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Customer $customer): Customer
+    public function show(Customer $customer): LengthAwarePaginator
     {
-        return $customer->load('companies');
+        return $customer->companies()->paginate();
     }
 }
